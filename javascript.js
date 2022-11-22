@@ -22,6 +22,21 @@ function playRound(playerSelection, computerSelection) {
 
     display a lose/win message to the player
     */
+  const winString = `You Win! ${playerSelection} beats ${computerSelection}.`;
+  const loseString = `You Lose! ${computerSelection} beats ${playerSelection}. Better luck next time!`;
+  const tieString = `It's a tie! ${playerSelection} vs ${computerSelection}!`;
+
+  if (playerSelection === computerSelection) {
+    return tieString;
+  } else if (
+    (playerSelection === "Rock" && computerSelection === "Scissors") ||
+    (playerSelection === "Paper" && computerSelection === "Rock") ||
+    (playerSelection === "Scissors" && computerSelection === "Paper")
+  ) {
+    return winString;
+  } else {
+    return loseString;
+  }
 }
 
 function getPlayerSelection() {
