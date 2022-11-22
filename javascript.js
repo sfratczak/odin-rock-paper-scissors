@@ -22,6 +22,7 @@ function playRound(playerSelection, computerSelection) {
 
     display a lose/win message to the player
     */
+
   const winString = `You Win! ${playerSelection} beats ${computerSelection}.`;
   const loseString = `You Lose! ${computerSelection} beats ${playerSelection}. Better luck next time!`;
   const tieString = `It's a tie! ${playerSelection} vs ${computerSelection}!`;
@@ -39,7 +40,7 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function getPlayerSelection() {
+function getPlayerChoice() {
   const validOptions = ["rock", "paper", "scissors"];
 
   const playerInput = prompt(
@@ -47,10 +48,10 @@ function getPlayerSelection() {
   ).toLowerCase();
 
   if (!validOptions.includes(playerInput)) {
-    console.warning(`Invalid option: "${playerInput}". Try again.`);
-    getPlayerSelection();
+    console.warn(`Invalid option: "${playerInput}". Try again.`);
+    getPlayerChoice();
+  } else {
+    //Return playerInput formatted as: Rock / Paper / Scissors
+    return playerInput.charAt(0).toUpperCase() + playerInput.slice(1);
   }
-
-  //Return playerInput formatted as: Rock / Paper / Scissors
-  return playerInput.charAt(0).toUpperCase() + playerInput.slice(1);
 }
