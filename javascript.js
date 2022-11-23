@@ -13,10 +13,11 @@ function playRound(playerSelection, computerSelection) {
   const winString = `You Win! ${playerSelection} beats ${computerSelection}.`;
   const loseString = `You Lose! ${computerSelection} beats ${playerSelection}. Better luck next time!`;
   const tieString = `It's a tie! ${playerSelection} vs ${computerSelection}!`;
+  const invalidString = "Round invalid.";
 
   if (playerSelection === undefined) {
-    //playerSelection was invalid. Abort.
-    return;
+    //playerSelection was invalid. Return invalidString.
+    return invalidString;
   } else if (playerSelection === computerSelection) {
     //Tie condition
     return tieString;
