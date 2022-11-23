@@ -10,32 +10,25 @@ function getRandomInt(min, max) {
 }
 
 function playRound(playerSelection, computerSelection) {
-  /*
-    ask the player to make a selection
-    read the selection and verify if it's valid
-    if valid, assign it to a variable
-    make the selection's format match computerSelection format
-
-    getComputerChoice and assign it to a variable
-    
-    compare playerselection with computerselection and choose a winner
-
-    display a lose/win message to the player
-    */
-
   const winString = `You Win! ${playerSelection} beats ${computerSelection}.`;
   const loseString = `You Lose! ${computerSelection} beats ${playerSelection}. Better luck next time!`;
   const tieString = `It's a tie! ${playerSelection} vs ${computerSelection}!`;
 
-  if (playerSelection === computerSelection) {
+  if (playerSelection === undefined) {
+    //playerSelection was invalid. Abort.
+    return;
+  } else if (playerSelection === computerSelection) {
+    //Tie condition
     return tieString;
   } else if (
     (playerSelection === "Rock" && computerSelection === "Scissors") ||
     (playerSelection === "Paper" && computerSelection === "Rock") ||
     (playerSelection === "Scissors" && computerSelection === "Paper")
   ) {
+    //Win conditions
     return winString;
   } else {
+    //All remaining options trigger a lose condition
     return loseString;
   }
 }
@@ -43,19 +36,17 @@ function playRound(playerSelection, computerSelection) {
 function getPlayerChoice() {
   const validOptions = ["rock", "paper", "scissors"];
 
+  //Prompt the player to choose one of three options
   const playerInput = prompt(
     "Choose one: Rock, Paper, or Scissors."
   ).toLowerCase();
 
-  //TODO: Bug
-  // if user provides an invalid input in first function call and then
-  // provides a valid one in the second function call (recursion), the function
-  // still returns the invalid one.
+  //Verify input against valid options and show error if necessary
   if (!validOptions.includes(playerInput)) {
-    console.warn(`Invalid option: "${playerInput}". Try again.`);
-    getPlayerChoice();
+    console.error(`Invalid option: "${playerInput}". Try again.`);
+    return;
+  } else {
+    //Return valid playerInput formatted as: Rock / Paper / Scissors
+    return playerInput.charAt(0).toUpperCase() + playerInput.slice(1);
   }
-
-  //Return playerInput formatted as: Rock / Paper / Scissors
-  return playerInput.charAt(0).toUpperCase() + playerInput.slice(1);
 }
