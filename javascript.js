@@ -33,6 +33,14 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+function game(rounds = 5) {
+  for (let i = 0; i < rounds; i++) {
+    console.log(
+      `Round ${i + 1}: ${playRound(getPlayerChoice(), getComputerChoice())}`
+    );
+  }
+}
+
 function getPlayerChoice() {
   const validOptions = ["rock", "paper", "scissors"];
 
