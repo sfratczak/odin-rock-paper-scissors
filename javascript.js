@@ -1,5 +1,6 @@
 const buttons = document.querySelectorAll("button");
 const results = document.querySelector(".results");
+const scores = document.querySelector(".scores");
 const playerScore = document.querySelector(".player-score");
 const computerScore = document.querySelector(".computer-score");
 
@@ -45,12 +46,41 @@ function playRound(playerSelection, computerSelection) {
   ) {
     //Win conditions
     playerPoints++;
-    playerScore.textContent = `Player: ${playerPoints}`;
+    updateScoreManager();
     return winString;
   } else {
     //All remaining options trigger a lose condition
     computerPoints++;
-    computerScore.textContent = `Computer: ${computerPoints}`;
+    updateScoreManager();
     return loseString;
+  }
+}
+
+function updateScoreManager() {
+  playerScore.textContent = `Player: ${playerPoints}`;
+  computerScore.textContent = `Computer: ${computerPoints}`;
+
+  checkForWinner();
+}
+
+function checkForWinner() {
+  if (playerPoints === 5) {
+    const para = document.createElement("p");
+
+    para.textContent = "Congratulations! You win!";
+    scores.appendChild(para);
+
+    buttons.forEach((button) => {
+      button.disabled = true;
+    });
+  } else if (computerPoints === 5) {
+    const para = document.createElement("p");
+
+    para.textContent = "Oh no! You lose.";
+    scores.appendChild(para);
+
+    buttons.forEach((button) => {
+      button.disabled = true;
+    });
   }
 }
