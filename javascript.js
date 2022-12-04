@@ -1,5 +1,13 @@
 const buttons = document.querySelectorAll("button");
 const results = document.querySelector(".results");
+const playerScore = document.querySelector(".player-score");
+const computerScore = document.querySelector(".computer-score");
+
+let playerPoints = 0;
+let computerPoints = 0;
+
+playerScore.textContent = `Player: ${playerPoints}`;
+computerScore.textContent = `Computer: ${computerPoints}`;
 
 buttons.forEach((button) => {
   button.addEventListener("click", function () {
@@ -36,27 +44,13 @@ function playRound(playerSelection, computerSelection) {
     (playerSelection === "scissors" && computerSelection === "paper")
   ) {
     //Win conditions
+    playerPoints++;
+    playerScore.textContent = `Player: ${playerPoints}`;
     return winString;
   } else {
     //All remaining options trigger a lose condition
+    computerPoints++;
+    computerScore.textContent = `Computer: ${computerPoints}`;
     return loseString;
-  }
-}
-
-function getPlayerChoice() {
-  const validOptions = ["rock", "paper", "scissors"];
-
-  //Prompt the player to choose one of three options
-  const playerInput = prompt(
-    "Choose one: Rock, Paper, or Scissors."
-  ).toLowerCase();
-
-  //Verify input against valid options and show error if necessary
-  if (!validOptions.includes(playerInput)) {
-    console.error(`Invalid option: "${playerInput}". Try again.`);
-    return;
-  } else {
-    //Return valid playerInput formatted as: Rock / Paper / Scissors
-    return playerInput.charAt(0).toUpperCase() + playerInput.slice(1);
   }
 }
