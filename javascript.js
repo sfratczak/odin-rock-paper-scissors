@@ -1,5 +1,13 @@
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+  button.addEventListener("click", function () {
+    console.log(playRound(button.className, getComputerChoice()));
+  });
+});
+
 function getComputerChoice() {
-  const options = ["Rock", "Paper", "Scissors"];
+  const options = ["rock", "paper", "scissors"];
   return options[getRandomInt(0, options.length)];
 }
 
@@ -22,9 +30,9 @@ function playRound(playerSelection, computerSelection) {
     //Tie condition
     return tieString;
   } else if (
-    (playerSelection === "Rock" && computerSelection === "Scissors") ||
-    (playerSelection === "Paper" && computerSelection === "Rock") ||
-    (playerSelection === "Scissors" && computerSelection === "Paper")
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "paper")
   ) {
     //Win conditions
     return winString;
