@@ -7,23 +7,21 @@
 }
 
 body {
-    background-color: #453C67;
+    background-color: #f1faee;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-div {
-    border: 1px solid black;
+    gap: 16px;
 }
 
 h1 {
-    color: #6D67E4;
+    color: #1d3557;
     font-size: 55px;
+    text-shadow: 5px;
 }
 
 button {
-    background-color: #46C2CB;
+    background-color: #a8dadc;
     border-style: none;
     border-radius: 12px;
     font-size: 55px;
@@ -31,17 +29,32 @@ button {
     margin: 0 16px;
 }
 
-.description {
-    margin: 16px;
+strong {
+    color: #1d3557;
+}
+.description,
+.results {
     line-height: 28px;
+    color: #457b9d;
 }
 
-.results {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 64px;
-}
 .scores {
     display: flex;
+    font-size: 32px;
+    color: #1d3557;
+    gap: 16px;
+}
+
+.win-text,
+.lose-text {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.lose-text {
+    color: #e63946;
+}
+
+.win-text {
+    color:  #a7c957;
 }
