@@ -4,6 +4,7 @@ const results = document.querySelector(".results");
 const scores = document.querySelector(".scores");
 const playerScore = document.querySelector(".player-score");
 const computerScore = document.querySelector(".computer-score");
+const matchResult = document.querySelector(".match-result");
 
 let playerPoints = 0;
 let computerPoints = 0;
@@ -29,9 +30,9 @@ function getRandomInt(min, max) {
 }
 
 function playRound(playerSelection, computerSelection) {
-  const winString = `You Win! ${playerSelection} beats ${computerSelection}.`;
-  const loseString = `You Lose! ${computerSelection} beats ${playerSelection}. Better luck next time!`;
-  const tieString = `It's a tie! ${playerSelection} vs ${computerSelection}!`;
+  const winString = `You Win! ${playerSelection.toUpperCase()} beats ${computerSelection.toUpperCase()}.`;
+  const loseString = `You Lose! ${computerSelection.toUpperCase()} beats ${playerSelection.toUpperCase()}. Better luck next time!`;
+  const tieString = `It's a tie! ${playerSelection.toUpperCase()} vs ${computerSelection.toUpperCase()}!`;
   const invalidString = "Round invalid.";
 
   if (playerSelection === undefined) {
@@ -66,21 +67,15 @@ function updateScoreManager() {
 
 function checkForWinner() {
   if (playerPoints === 5) {
-    const para = document.createElement("p");
-
-    para.textContent = "Congratulations! You win!";
-    body.appendChild(para);
-    para.classList.add("win-text");
+    matchResult.textContent = "Congratulations! You win!";
+    matchResult.classList.toggle("win-text");
 
     buttons.forEach((button) => {
       button.disabled = true;
     });
   } else if (computerPoints === 5) {
-    const para = document.createElement("p");
-    para.classList.add("lose-text");
-
-    para.textContent = "Oh no! You lose.";
-    body.appendChild(para);
+    matchResult.textContent = "Oh no! You lose.";
+    matchResult.classList.toggle("lose-text");
 
     buttons.forEach((button) => {
       button.disabled = true;
