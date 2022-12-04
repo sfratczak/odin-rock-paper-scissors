@@ -1,3 +1,4 @@
+const body = document.querySelector("body");
 const buttons = document.querySelectorAll("button");
 const results = document.querySelector(".results");
 const scores = document.querySelector(".scores");
@@ -68,16 +69,18 @@ function checkForWinner() {
     const para = document.createElement("p");
 
     para.textContent = "Congratulations! You win!";
-    scores.appendChild(para);
+    body.appendChild(para);
+    para.classList.add("win-text");
 
     buttons.forEach((button) => {
       button.disabled = true;
     });
   } else if (computerPoints === 5) {
     const para = document.createElement("p");
+    para.classList.add("lose-text");
 
     para.textContent = "Oh no! You lose.";
-    scores.appendChild(para);
+    body.appendChild(para);
 
     buttons.forEach((button) => {
       button.disabled = true;
