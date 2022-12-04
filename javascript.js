@@ -1,8 +1,9 @@
 const buttons = document.querySelectorAll("button");
+const results = document.querySelector(".results");
 
 buttons.forEach((button) => {
   button.addEventListener("click", function () {
-    console.log(playRound(button.className, getComputerChoice()));
+    results.textContent = playRound(button.className, getComputerChoice());
   });
 });
 
@@ -39,14 +40,6 @@ function playRound(playerSelection, computerSelection) {
   } else {
     //All remaining options trigger a lose condition
     return loseString;
-  }
-}
-
-function game(rounds = 5) {
-  for (let i = 0; i < rounds; i++) {
-    console.log(
-      `Round ${i + 1}: ${playRound(getPlayerChoice(), getComputerChoice())}`
-    );
   }
 }
 
